@@ -1,0 +1,12 @@
+{% extends "indexApp/homePage.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Регистрация</h2>
+    <form method="post" class="col">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-labeled btn-secondary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

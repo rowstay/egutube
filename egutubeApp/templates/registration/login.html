@@ -1,0 +1,34 @@
+{% extends "indexApp/homePage.html" %}
+{% block content %}
+{% if form.errors %}
+  <p>Ваш логин или пароль не верны, пожалуйста, попробуйте еще раз</p>
+{% endif %}
+{% if next %}
+  {% if user.is_authenticated %}
+    <h3>Ваш аккаунт не нуждается в авторизации. Вы можете перейти в личный кабинет или на страницу с видео</h3>
+  {% else %}
+    <p>Пожалуйста войдите в сеть</p>
+  {% endif %}
+{% endif %}
+<div class="input-group mb-3">
+<form  method="post"  action="{% url 'login' %}">
+{% csrf_token %}
+<div class="col-sm-4">
+    <label class="visually-hidden" for="specificSizeInputGroupUsername">{{ form.username.label_tag }}</label>
+    <div class="input-group">
+      {{ form.username }}
+    </div>
+  </div>
+  <div class="col-sm-4">
+      <label class="visually-hidden" for="specificSizeInputGroupUsername">{{ form.password.label_tag }}</label>
+      <div class="input-group">
+        {{ form.password }}
+        <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+      </div>
+    </div>
+<input type="submit" button type="button" class="btn btn-primary btn-lg" value="Войти" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+{# Assumes you setup the password_reset view in your URLconf #}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "indexApp/homePage.html" %}
+{% block content %}
+<div class="container px-4">
+        <h1>Загрузите свое видео</h1>
+        <form method="post" >
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary"><img src="/static/img/cloud-arrow-up.svg" style="font-size: 2rem; color: white;">Загрузить</button>
+        </form>
+<div>
+{% endblock %}
